@@ -9,8 +9,8 @@ from Gaudi.Configuration import *
 ##############################################################################
 # Event Data Svc
 ##############################################################################
-from Configurables import K4DataSvc
-dsvc = K4DataSvc("EventDataSvc", input="you_input.root")
+from Configurables import k4DataSvc
+dsvc = k4DataSvc("EventDataSvc", input="you_input.root")
 ##############################################################################
 from Configurables import PodioInput ## set the input collection data
 podioinput = PodioInput("PodioReader", collections=[ 

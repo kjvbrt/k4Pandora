@@ -403,7 +403,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::MCParticle> v_mc;
                     m_CollectionMaps->collectionMap_MC [v.first] = v_mc;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_MC [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_MC [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -416,7 +416,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::CalorimeterHit> v_cal;
                     m_CollectionMaps->collectionMap_CaloHit[v.first] = v_cal ;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_CaloHit [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_CaloHit [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -429,7 +429,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::Track> v_cal;
                     m_CollectionMaps->collectionMap_Track[v.first] = v_cal ;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_Track [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_Track [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -442,7 +442,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::Vertex> v_cal;
                     m_CollectionMaps->collectionMap_Vertex[v.first] = v_cal ;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_Vertex [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_Vertex [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -455,7 +455,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::MCRecoCaloAssociation> v_cal;
                     m_CollectionMaps->collectionMap_CaloRel[v.first] = v_cal ;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_CaloRel [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_CaloRel [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -468,7 +468,7 @@ StatusCode PandoraPFAlg::updateMap()
                 if(po != NULL){
                     std::vector<edm4hep::MCRecoTrackerAssociation> v_cal;
                     m_CollectionMaps->collectionMap_TrkRel[v.first] = v_cal ;
-                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_TrkRel [v.first].push_back(po->at(i));
+                    for(unsigned int i=0 ; i< po->size(); i++) m_CollectionMaps->collectionMap_TrkRel [v.first].emplace_back(po->at(i).clone());
                     std::cout<<"saved col name="<<v.first<<std::endl;
                 }
                 else{
@@ -497,7 +497,7 @@ StatusCode PandoraPFAlg::CreateMCRecoParticleAssociation()
         std::map<int, edm4hep::ConstMCParticle> mc_map;
         std::map<int, float > id_edep_map;
         float tot_en = 0 ;
-        const edm4hep::ReconstructedParticle pReco = reco_col->at(i);
+        const edm4hep::ReconstructedParticle pReco = reco_col->at(i).clone();
         for(int j=0; j < pReco.clusters_size(); j++)
         {
             edm4hep::ConstCluster cluster = pReco.getClusters(j);

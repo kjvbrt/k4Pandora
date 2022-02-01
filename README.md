@@ -1,10 +1,10 @@
 ## Quick start
 ```
-$ source /cvmfs/cepcsw.ihep.ac.cn/prototype/releases/externals/98.0.0/setup-98.0.0.sh
+$ source /cvmfs/sw.hsf.org/key4hep/setup.sh
 $ git clone https://github.com/key4hep/k4Pandora.git
 $ cd k4Pandora
 $ mkdir build && cd build
-$ cmake .. 
+$ cmake -DCMAKE_MODULE_PATH=/cvmfs/sw.hsf.org/spackages4/pandorapfa/3.21.01/x86_64-centos7-gcc8.3.0-opt/bsioyrw/cmakemodules ..
 $ make
 $ ./run gaudirun.py ../Examples/options/tut_pandora.py
 ```
